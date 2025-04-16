@@ -36,7 +36,7 @@ const roastBusinessIdea = async (businessIdea) => {
       model: "gemini-2.0-flash",
       contents: `You are a sarcastic and witty business critic who roasts business ideas. 
 Your responses should be funny, slightly edgy, but not cruel.
-Roast this business idea in 2-3 short paragraphs:
+Roast this business idea in 1-2 short paragraphs:
 "${businessIdea}"
 
 Make sure your response is concise, entertaining, and points out potential flaws 
