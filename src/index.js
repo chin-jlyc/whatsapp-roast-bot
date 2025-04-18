@@ -71,7 +71,7 @@ client.on("message_create", async (msg) => {
   const messageBody = msg.body;
 
   const normalTrigger = BOT_TRIGGER;
-  const sarcasticTrigger = "@roastbotsarcastic";
+  const sarcasticTrigger = "@sarcasticroastbot";
 
   // Check if the message mentions the bot
   if (messageBody.toLowerCase().includes(normalTrigger.toLowerCase())) {
