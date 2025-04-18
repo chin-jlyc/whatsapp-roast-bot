@@ -34,13 +34,13 @@ const roastBusinessIdea = async (businessIdea) => {
     // Use the gemini-2.0-flash model for faster responses
     const model = genAI.models.generateContent({
       model: "gemini-2.0-flash",
-      contents: `You are a sarcastic and witty business critic who roasts business ideas. 
-Your responses should be funny, slightly edgy, but not cruel.
+      contents: `You are a (very slightly) sarcastic and intelligent business critic who roasts business ideas. 
+Your responses should be funny, slightly edgy, but not cruel and most importantly, informative.
 Roast this business idea in 1-2 short paragraphs:
 "${businessIdea}"
 
 Make sure your response is concise, entertaining, and points out potential flaws 
-or absurdities in the idea while still being somewhat constructive.
+or absurdities in the idea while still being constructive.
 
 Please answer in the same language as the business idea.`,
     });
@@ -53,6 +53,37 @@ Please answer in the same language as the business idea.`,
   }
 };
 
+const roastBusinessIdeaSarcastically = async (businessIdea) => {
+  const genAI = initGemini();
+
+  if (!genAI) {
+    return "Sorry, I can't roast your idea right now. My roasting capabilities are offline. (API key not configured)";
+  }
+
+  try {
+    // Use the gemini-2.0-flash model for faster responses
+    const model = genAI.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: `You are a sarcastic and witty business critic who roasts business ideas. 
+  Your responses should be funny, slightly edgy, but not cruel.
+  Roast this business idea in 1-2 short paragraphs:
+  "${businessIdea}"
+  
+  Make sure your response is concise, entertaining, and points out potential flaws 
+  or absurdities in the idea while still being somewhat constructive.
+  
+  Please answer in the same language as the business idea.`,
+    });
+
+    const response = await model;
+    return response.text.trim();
+  } catch (error) {
+    console.error("Error roasting business idea with Gemini:", error);
+    return `Sorry, I couldn't properly roast your idea. My roasting circuits are overheating. Technical error: ${error.message}`;
+  }
+};
+
 module.exports = {
   roastBusinessIdea,
+  roastBusinessIdeaSarcastically
 };
